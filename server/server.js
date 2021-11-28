@@ -15,20 +15,20 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-server.start().then(() => {
-  server.applyMiddleware({ app });
-});
+// server.start().then(() => {
+//   server.applyMiddleware({ app });
+// });
 
 
-// server.applyMiddleware({ app });
+server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(__dirname + '../../client/build'));
+// app.use(express.static(__dirname + '../../client/build'));
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname + '../../client/build')));
+  app.use(express.static(path.join(__dirname + '../client/build')));
 }
 
 // app.use(routes);
